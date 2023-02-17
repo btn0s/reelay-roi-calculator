@@ -8404,7 +8404,7 @@ function App() {
       currency: "USD"
     }).format(total);
   }, [employeeCount, meetingHours, salaryTier]);
-  return /* @__PURE__ */ jsx("div", { className: "w-full p-6 text-left", children: /* @__PURE__ */ jsxs("div", { className: "w-full max-w-[742px] rounded-lg bg-white p-8 shadow-lg", children: [
+  return /* @__PURE__ */ jsx("div", { className: "flex w-full justify-center p-6 text-left", children: /* @__PURE__ */ jsxs("div", { className: "w-full max-w-[742px] rounded-lg bg-white p-8 shadow-lg", children: [
     /* @__PURE__ */ jsxs("div", { className: "mb-[24px] flex items-center border-b pb-[32px] text-2xl font-bold", children: [
       /* @__PURE__ */ jsx("div", { id: "reset-calc-button-wrapper", className: "mr-4 hidden", children: /* @__PURE__ */ jsx("button", { id: "reset-calc-button", children: /* @__PURE__ */ jsx(
         "svg",

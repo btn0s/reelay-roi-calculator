@@ -257,7 +257,7 @@ function App() {
   }, [employeeCount, meetingHours, salaryTier]);
 
   return (
-    <div className="w-full p-6 text-left">
+    <div className="flex w-full justify-center p-6 text-left">
       <div className="w-full max-w-[742px] rounded-lg bg-white p-8 shadow-lg">
         <div className="mb-[24px] flex items-center border-b pb-[32px] text-2xl font-bold">
           <div id="reset-calc-button-wrapper" className="mr-4 hidden">
