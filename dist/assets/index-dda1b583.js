@@ -8368,66 +8368,16 @@ const CalculatingStep = ({ setStep }) => {
   ] });
 };
 const ResultStep = ({ formattedTotal }) => {
-  return /* @__PURE__ */ jsxs("div", { "data-step": "3", children: [
-    /* @__PURE__ */ jsxs("div", { className: "flex h-[250px] flex-col items-start justify-center", children: [
-      /* @__PURE__ */ jsxs("div", { className: "mb-6 text-2xl font-semibold", children: [
-        "You can save an average of",
-        " ",
-        /* @__PURE__ */ jsx("span", { id: "calculator-result", className: "text-[#3730A3]", children: formattedTotal }),
-        "per year using ",
-        /* @__PURE__ */ jsx("span", { className: "text-[#3730A3]", children: "Reelay" })
-      ] }),
-      /* @__PURE__ */ jsx("p", { children: "Signup below and we'll schedule time to tell you exactly how we can help change the way you do meetings." })
+  return /* @__PURE__ */ jsx("div", { "data-step": "3", children: /* @__PURE__ */ jsxs("div", { className: "flex h-[250px] flex-col items-start justify-center", children: [
+    /* @__PURE__ */ jsxs("div", { className: "mb-6 text-2xl font-semibold", children: [
+      "You can save an average of",
+      " ",
+      /* @__PURE__ */ jsx("span", { id: "calculator-result", className: "text-[#3730A3]", children: formattedTotal }),
+      "per year using ",
+      /* @__PURE__ */ jsx("span", { className: "text-[#3730A3]", children: "Reelay" })
     ] }),
-    /* @__PURE__ */ jsx(
-      "script",
-      {
-        charSet: "utf-8",
-        type: "text/javascript",
-        src: "//js.hsforms.net/forms/shell.js"
-      }
-    ),
-    /* @__PURE__ */ jsx(
-      "script",
-      {
-        "data-hubspot-rendered": "true",
-        dangerouslySetInnerHTML: {
-          __html: `
-            hbspt.forms.create({
-              region: "na1",
-              portalId: "21378611",
-              formId: "7a946706-6bf0-414d-b3e5-05d9d12dfd0e"
-            });
-          `
-        }
-      }
-    ),
-    /* @__PURE__ */ jsx(
-      "div",
-      {
-        id: "hbspt-form-7d9ed800-9ebe-44e7-91de-917b91a6f977",
-        className: "hbspt-form",
-        "data-hs-forms-root": "true",
-        children: /* @__PURE__ */ jsx(
-          "iframe",
-          {
-            id: "hs-form-iframe-3",
-            className: "hs-form-iframe",
-            title: "Form 3",
-            scrolling: "no",
-            width: "100%",
-            style: {
-              position: "static",
-              border: "none",
-              display: "block",
-              overflow: "hidden",
-              width: "100%"
-            }
-          }
-        )
-      }
-    )
-  ] });
+    /* @__PURE__ */ jsx("p", { children: "Signup below and we'll schedule time to tell you exactly how we can help change the way you do meetings." })
+  ] }) });
 };
 function App() {
   const [step, setStep] = reactExports.useState(
@@ -8454,7 +8404,7 @@ function App() {
       currency: "USD"
     }).format(total);
   }, [employeeCount, meetingHours, salaryTier]);
-  return /* @__PURE__ */ jsx("div", { className: "p-6", children: /* @__PURE__ */ jsxs("div", { className: "w-full max-w-[742px] rounded-lg bg-white p-8 shadow-lg", children: [
+  return /* @__PURE__ */ jsx("div", { className: "w-full p-6 text-left", children: /* @__PURE__ */ jsxs("div", { className: "w-full max-w-[742px] rounded-lg bg-white p-8 shadow-lg", children: [
     /* @__PURE__ */ jsxs("div", { className: "mb-[24px] flex items-center border-b pb-[32px] text-2xl font-bold", children: [
       /* @__PURE__ */ jsx("div", { id: "reset-calc-button-wrapper", className: "mr-4 hidden", children: /* @__PURE__ */ jsx("button", { id: "reset-calc-button", children: /* @__PURE__ */ jsx(
         "svg",

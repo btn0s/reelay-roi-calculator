@@ -213,8 +213,6 @@ const CalculatingStep = ({ setStep }: { setStep: (value: Step) => void }) => {
 };
 
 const ResultStep = ({ formattedTotal }: { formattedTotal: string }) => {
-  const totalSavings = 1000;
-
   return (
     <div data-step="3">
       <div className="flex h-[250px] flex-col items-start justify-center">
@@ -229,43 +227,6 @@ const ResultStep = ({ formattedTotal }: { formattedTotal: string }) => {
           Signup below and we'll schedule time to tell you exactly how we can
           help change the way you do meetings.
         </p>
-      </div>
-      <script
-        charSet="utf-8"
-        type="text/javascript"
-        src="//js.hsforms.net/forms/shell.js"
-      ></script>
-      <script
-        data-hubspot-rendered="true"
-        dangerouslySetInnerHTML={{
-          __html: `
-            hbspt.forms.create({
-              region: "na1",
-              portalId: "21378611",
-              formId: "7a946706-6bf0-414d-b3e5-05d9d12dfd0e"
-            });
-          `,
-        }}
-      ></script>
-      <div
-        id="hbspt-form-7d9ed800-9ebe-44e7-91de-917b91a6f977"
-        className="hbspt-form"
-        data-hs-forms-root="true"
-      >
-        <iframe
-          id="hs-form-iframe-3"
-          className="hs-form-iframe"
-          title="Form 3"
-          scrolling="no"
-          width="100%"
-          style={{
-            position: 'static',
-            border: 'none',
-            display: 'block',
-            overflow: 'hidden',
-            width: '100%',
-          }}
-        ></iframe>
       </div>
     </div>
   );
@@ -296,7 +257,7 @@ function App() {
   }, [employeeCount, meetingHours, salaryTier]);
 
   return (
-    <div className="p-6">
+    <div className="w-full p-6 text-left">
       <div className="w-full max-w-[742px] rounded-lg bg-white p-8 shadow-lg">
         <div className="mb-[24px] flex items-center border-b pb-[32px] text-2xl font-bold">
           <div id="reset-calc-button-wrapper" className="mr-4 hidden">
