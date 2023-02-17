@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Simulate } from 'react-dom/test-utils';
 import input = Simulate.input;
@@ -15,6 +16,11 @@ enum SalaryTier {
   LARGE = 'salary-2',
 }
 
+const SALARY_MAP: Record<SalaryTier, string> = {
+  [SalaryTier.SMALL]: '$40k - $70k',
+  [SalaryTier.MEDIUM]: '$80k - $100k',
+  [SalaryTier.LARGE]: '$100k +',
+};
 const HOURLY_MAP: Record<SalaryTier, number> = {
   [SalaryTier.SMALL]: 35,
   [SalaryTier.MEDIUM]: 50,
@@ -65,7 +71,7 @@ const CollectingStep = ({
         />
         <div className="flex w-full justify-between text-sm">
           <div id="number-of-employees-value" className="font-bold">
-            70
+            {employeeCount}
           </div>
           <div className="text-xs">500+</div>
         </div>
@@ -89,7 +95,7 @@ const CollectingStep = ({
         />
         <div className="flex w-full justify-between text-sm">
           <div id="hours-in-meetings-value" className="font-bold">
-            4
+            {meetingHours}
           </div>
           <div className="text-xs">40+</div>
         </div>
@@ -100,65 +106,32 @@ const CollectingStep = ({
         </label>
       </div>
       <div className="flex text-xs md:text-sm">
-        <div>
-          <input
-            className="peer sr-only"
-            type="checkbox"
-            id="salary-radio-0"
-            value="salary-0"
-            aria-labelledby="salary-radio-0-label"
-            checked={salaryTier === SalaryTier.SMALL}
-            onChange={() => {
-              setSalaryTier(SalaryTier.SMALL);
-            }}
-          />
-          <label
-            htmlFor="salary-radio-0"
-            className="salary-checkbox mr-2 cursor-pointer rounded-lg border py-2 px-3 font-bold focus:outline-none peer-checked:border-[#3b368f] peer-checked:bg-[#E0E7FF]"
-          >
-            $40 - $70k
-          </label>
-        </div>
-        <div>
-          <input
-            className="peer sr-only"
-            type="checkbox"
-            id="salary-radio-1"
-            value="salary-1"
-            aria-labelledby="salary-radio-1-label"
-            checked={salaryTier === SalaryTier.MEDIUM}
-            onChange={() => {
-              setSalaryTier(SalaryTier.MEDIUM);
-            }}
-          />
-          <label
-            htmlFor="salary-radio-1"
-            className="salary-checkbox mr-2 cursor-pointer rounded-lg border py-2 px-3 font-bold focus:outline-none peer-checked:border-[#3b368f] peer-checked:bg-[#E0E7FF]"
-          >
-            $80k - $100k
-          </label>
-        </div>
-        <div>
-          <input
-            className="peer sr-only"
-            type="checkbox"
-            id="salary-radio-2"
-            value="salary-2"
-            aria-labelledby="salary-radio-2-label"
-            checked={salaryTier === SalaryTier.LARGE}
-            onChange={() => {
-              setSalaryTier(SalaryTier.LARGE);
-            }}
-          />
-          <label
-            htmlFor="salary-radio-2"
-            className="salary-checkbox mr-2 cursor-pointer rounded-lg border py-2 px-3 font-bold focus:outline-none peer-checked:border-[#3b368f] peer-checked:bg-[#E0E7FF]"
-          >
-            $100k +
-          </label>
-        </div>
+        {Object.values(SalaryTier).map((tier) => (
+          <div key={tier}>
+            <input
+              className="sr-only"
+              type="checkbox"
+              id={`salary-radio-${tier}`}
+              value={tier}
+              checked={salaryTier === tier}
+              onChange={() => {
+                setSalaryTier(tier);
+              }}
+            />
+            <label
+              htmlFor={`salary-radio-${tier}`}
+              className={classNames(
+                'salary-checkbox mr-2 cursor-pointer rounded-lg border py-2 px-3 font-bold focus:outline-none',
+                {
+                  'border-[#3b368f] bg-[#E0E7FF]': salaryTier === tier,
+                }
+              )}
+            >
+              {SALARY_MAP[tier]}
+            </label>
+          </div>
+        ))}
       </div>
-
       <div className="mt-4 border-t pt-4">
         <button
           onClick={() => setStep(Step.CALCULATING)}
@@ -218,7 +191,7 @@ const ResultStep = ({ formattedTotal }: { formattedTotal: string }) => {
       <div className="flex h-[250px] flex-col items-start justify-center">
         <div className="mb-6 text-2xl font-semibold">
           You can save an average of{' '}
-          <span id="calculator-result" className="text-[#3730A3]">
+          <span id="calculator-result" className="text-[#3730A3] mr-2">
             {formattedTotal}
           </span>
           per year using <span className="text-[#3730A3]">Reelay</span>

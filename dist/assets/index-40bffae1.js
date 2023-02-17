@@ -7622,6 +7622,62 @@ var m$1 = reactDomExports;
   client.createRoot = m$1.createRoot;
   client.hydrateRoot = m$1.hydrateRoot;
 }
+var classnamesExports = {};
+var classnames = {
+  get exports() {
+    return classnamesExports;
+  },
+  set exports(v2) {
+    classnamesExports = v2;
+  }
+};
+/*!
+	Copyright (c) 2018 Jed Watson.
+	Licensed under the MIT License (MIT), see
+	http://jedwatson.github.io/classnames
+*/
+(function(module) {
+  (function() {
+    var hasOwn = {}.hasOwnProperty;
+    function classNames2() {
+      var classes = [];
+      for (var i = 0; i < arguments.length; i++) {
+        var arg = arguments[i];
+        if (!arg)
+          continue;
+        var argType = typeof arg;
+        if (argType === "string" || argType === "number") {
+          classes.push(arg);
+        } else if (Array.isArray(arg)) {
+          if (arg.length) {
+            var inner = classNames2.apply(null, arg);
+            if (inner) {
+              classes.push(inner);
+            }
+          }
+        } else if (argType === "object") {
+          if (arg.toString !== Object.prototype.toString && !arg.toString.toString().includes("[native code]")) {
+            classes.push(arg.toString());
+            continue;
+          }
+          for (var key in arg) {
+            if (hasOwn.call(arg, key) && arg[key]) {
+              classes.push(key);
+            }
+          }
+        }
+      }
+      return classes.join(" ");
+    }
+    if (module.exports) {
+      classNames2.default = classNames2;
+      module.exports = classNames2;
+    } else {
+      window.classNames = classNames2;
+    }
+  })();
+})(classnames);
+const classNames = classnamesExports;
 var testUtilsExports = {};
 var testUtils = {
   get exports() {
@@ -8138,6 +8194,26 @@ reactDomTestUtils_production_min.traverseTwoPhase = X;
   }
 })(testUtils);
 testUtilsExports.Simulate.input;
+var SalaryTier = /* @__PURE__ */ ((SalaryTier2) => {
+  SalaryTier2["SMALL"] = "salary-0";
+  SalaryTier2["MEDIUM"] = "salary-1";
+  SalaryTier2["LARGE"] = "salary-2";
+  return SalaryTier2;
+})(SalaryTier || {});
+const SALARY_MAP = {
+  [
+    "salary-0"
+    /* SMALL */
+  ]: "$40k - $70k",
+  [
+    "salary-1"
+    /* MEDIUM */
+  ]: "$80k - $100k",
+  [
+    "salary-2"
+    /* LARGE */
+  ]: "$100k +"
+};
 const HOURLY_MAP = {
   [
     "salary-0"
@@ -8191,7 +8267,7 @@ const CollectingStep = ({
             }
           ),
           /* @__PURE__ */ jsxs("div", { className: "flex w-full justify-between text-sm", children: [
-            /* @__PURE__ */ jsx("div", { id: "number-of-employees-value", className: "font-bold", children: "70" }),
+            /* @__PURE__ */ jsx("div", { id: "number-of-employees-value", className: "font-bold", children: employeeCount }),
             /* @__PURE__ */ jsx("div", { className: "text-xs", children: "500+" })
           ] })
         ] }),
@@ -8216,94 +8292,39 @@ const CollectingStep = ({
             }
           ),
           /* @__PURE__ */ jsxs("div", { className: "flex w-full justify-between text-sm", children: [
-            /* @__PURE__ */ jsx("div", { id: "hours-in-meetings-value", className: "font-bold", children: "4" }),
+            /* @__PURE__ */ jsx("div", { id: "hours-in-meetings-value", className: "font-bold", children: meetingHours }),
             /* @__PURE__ */ jsx("div", { className: "text-xs", children: "40+" })
           ] })
         ] }),
         /* @__PURE__ */ jsx("div", { children: /* @__PURE__ */ jsx("label", { className: "font-semibold", htmlFor: "number-of-employees", children: "Average salary per employee" }) }),
-        /* @__PURE__ */ jsxs("div", { className: "flex text-xs md:text-sm", children: [
-          /* @__PURE__ */ jsxs("div", { children: [
-            /* @__PURE__ */ jsx(
-              "input",
-              {
-                className: "peer sr-only",
-                type: "checkbox",
-                id: "salary-radio-0",
-                value: "salary-0",
-                "aria-labelledby": "salary-radio-0-label",
-                checked: salaryTier === "salary-0",
-                onChange: () => {
-                  setSalaryTier(
-                    "salary-0"
-                    /* SMALL */
-                  );
+        /* @__PURE__ */ jsx("div", { className: "flex text-xs md:text-sm", children: Object.values(SalaryTier).map((tier) => /* @__PURE__ */ jsxs("div", { children: [
+          /* @__PURE__ */ jsx(
+            "input",
+            {
+              className: "sr-only",
+              type: "checkbox",
+              id: `salary-radio-${tier}`,
+              value: tier,
+              checked: salaryTier === tier,
+              onChange: () => {
+                setSalaryTier(tier);
+              }
+            }
+          ),
+          /* @__PURE__ */ jsx(
+            "label",
+            {
+              htmlFor: `salary-radio-${tier}`,
+              className: classNames(
+                "salary-checkbox mr-2 cursor-pointer rounded-lg border py-2 px-3 font-bold focus:outline-none",
+                {
+                  "border-[#3b368f] bg-[#E0E7FF]": salaryTier === tier
                 }
-              }
-            ),
-            /* @__PURE__ */ jsx(
-              "label",
-              {
-                htmlFor: "salary-radio-0",
-                className: "salary-checkbox mr-2 cursor-pointer rounded-lg border py-2 px-3 font-bold focus:outline-none peer-checked:border-[#3b368f] peer-checked:bg-[#E0E7FF]",
-                children: "$40 - $70k"
-              }
-            )
-          ] }),
-          /* @__PURE__ */ jsxs("div", { children: [
-            /* @__PURE__ */ jsx(
-              "input",
-              {
-                className: "peer sr-only",
-                type: "checkbox",
-                id: "salary-radio-1",
-                value: "salary-1",
-                "aria-labelledby": "salary-radio-1-label",
-                checked: salaryTier === "salary-1",
-                onChange: () => {
-                  setSalaryTier(
-                    "salary-1"
-                    /* MEDIUM */
-                  );
-                }
-              }
-            ),
-            /* @__PURE__ */ jsx(
-              "label",
-              {
-                htmlFor: "salary-radio-1",
-                className: "salary-checkbox mr-2 cursor-pointer rounded-lg border py-2 px-3 font-bold focus:outline-none peer-checked:border-[#3b368f] peer-checked:bg-[#E0E7FF]",
-                children: "$80k - $100k"
-              }
-            )
-          ] }),
-          /* @__PURE__ */ jsxs("div", { children: [
-            /* @__PURE__ */ jsx(
-              "input",
-              {
-                className: "peer sr-only",
-                type: "checkbox",
-                id: "salary-radio-2",
-                value: "salary-2",
-                "aria-labelledby": "salary-radio-2-label",
-                checked: salaryTier === "salary-2",
-                onChange: () => {
-                  setSalaryTier(
-                    "salary-2"
-                    /* LARGE */
-                  );
-                }
-              }
-            ),
-            /* @__PURE__ */ jsx(
-              "label",
-              {
-                htmlFor: "salary-radio-2",
-                className: "salary-checkbox mr-2 cursor-pointer rounded-lg border py-2 px-3 font-bold focus:outline-none peer-checked:border-[#3b368f] peer-checked:bg-[#E0E7FF]",
-                children: "$100k +"
-              }
-            )
-          ] })
-        ] }),
+              ),
+              children: SALARY_MAP[tier]
+            }
+          )
+        ] }, tier)) }),
         /* @__PURE__ */ jsx("div", { className: "mt-4 border-t pt-4", children: /* @__PURE__ */ jsx(
           "button",
           {
@@ -8372,7 +8393,7 @@ const ResultStep = ({ formattedTotal }) => {
     /* @__PURE__ */ jsxs("div", { className: "mb-6 text-2xl font-semibold", children: [
       "You can save an average of",
       " ",
-      /* @__PURE__ */ jsx("span", { id: "calculator-result", className: "text-[#3730A3]", children: formattedTotal }),
+      /* @__PURE__ */ jsx("span", { id: "calculator-result", className: "text-[#3730A3] mr-2", children: formattedTotal }),
       "per year using ",
       /* @__PURE__ */ jsx("span", { className: "text-[#3730A3]", children: "Reelay" })
     ] }),

@@ -586,9 +586,19 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   border-top-width: 1px;
 }
 
+#calculator-root .border-\[\#3b368f\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(59 54 143 / var(--tw-border-opacity));
+}
+
 #calculator-root .bg-\[\#4F46E5\] {
   --tw-bg-opacity: 1;
   background-color: rgb(79 70 229 / var(--tw-bg-opacity));
+}
+
+#calculator-root .bg-\[\#E0E7FF\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(224 231 255 / var(--tw-bg-opacity));
 }
 
 #calculator-root .bg-white {
@@ -696,16 +706,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
 .disabled\:opacity-60:disabled {
   opacity: 0.6;
-}
-
-.peer:checked ~ .peer-checked\:border-\[\#3b368f\] {
-  --tw-border-opacity: 1;
-  border-color: rgb(59 54 143 / var(--tw-border-opacity));
-}
-
-.peer:checked ~ .peer-checked\:bg-\[\#E0E7FF\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(224 231 255 / var(--tw-bg-opacity));
 }
 
 @media (min-width: 768px) {
