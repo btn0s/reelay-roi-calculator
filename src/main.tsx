@@ -7,6 +7,6 @@ const ROOT_ID = 'calculator-root';
 
 ReactDOM.createRoot(document.getElementById(ROOT_ID) as HTMLElement).render(
     <React.StrictMode>
-        <App/>
+            <App/>
     </React.StrictMode>,
 )
